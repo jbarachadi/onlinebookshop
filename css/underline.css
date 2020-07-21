@@ -1,0 +1,83 @@
+@use postcss-custom-media;
+@use postcss-nested; 
+
+
+/* Font import */
+@import url('https://fonts.googleapis.com/css?family=Roboto:300,400');
+
+
+/* Media query */
+@custom-media --min-sm (width >= 768px);
+
+
+/*________________________________________________ */
+
+.navigationx {
+  display: flex;
+}
+
+.menux { 
+  display: flex;
+  flex-direction: column;
+  
+  @media (--min-sm) {
+    flex-direction: row;
+  }
+}
+
+.menux > li {
+  @media (--min-sm) {
+    &:not(:last-child) {
+      margin-right: 40px;
+    }
+  }
+}
+
+.menux a {
+  position: relative;
+  display: inline-block;
+  font-size: 20px;
+  font-weight: 300;
+  color: #666;
+  transition: color .2s ease;
+  padding: 3px 0;
+  margin-bottom: 15px;
+  
+  &:hover {
+    color: #aaa;
+     
+    &::after,
+    &::before {
+      width: 50%;
+      center: 0;
+    }
+    
+  }
+  
+  &::after {
+    content: ''; 
+    position: absolute;
+    top: calc(100% + 5px);
+    width: 0;
+    left: 50%;
+    height: 3px;
+  }
+  &::before {
+    content: ''; 
+    position: absolute;
+    top: calc(100% + 5px);
+    width: 0;
+    right: 50%;
+    height: 3px;
+  }
+  
+  &::before {
+    transition: width .2s cubic-bezier(1, 0.18, 0.26, 0.83);
+    background: #F44336;
+  }
+  
+  &::after {
+    transition: width .2s cubic-bezier(1, 0.18, 0.26, 0.83);
+    background: #F44336;
+  }
+}
